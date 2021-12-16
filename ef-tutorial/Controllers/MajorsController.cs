@@ -1,5 +1,7 @@
 ﻿using ef_tutorial.Models;
 
+using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +19,13 @@ namespace ef_tutorial.Controllers
 			_context = new EdDbContext();
 		}
 
-		public List<Major> GetAll()
+		public async Task<List<Major>> GetAll()
 		{
-			return _context.Majors.ToList();
+			return await _context.Majors.ToListAsync();
 		}
-		public Major GetByPk(int Id)
+		public async Task<Major> GetByPk(int Id)
 		{
-			return _context.Majors.Find(Id);
+			return await _context.Majors.FindAsync(Id);
 		}
 		public Major GetByCode(string Code)
 		{
